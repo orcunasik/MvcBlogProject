@@ -10,11 +10,12 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DataAccessLayer</RootNamespace>
     <AssemblyName>DataAccessLayer</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -59,13 +60,13 @@
     <Compile Include="Abstract\IRepository.cs" />
     <Compile Include="Abstract\IWriterDal.cs" />
     <Compile Include="Concrete\Context.cs" />
-    <Compile Include="Concrete\Repositories\AboutRepository.cs" />
-    <Compile Include="Concrete\Repositories\CategoryRepository.cs" />
-    <Compile Include="Concrete\Repositories\ContactRepository.cs" />
-    <Compile Include="Concrete\Repositories\ContentRepository.cs" />
     <Compile Include="Concrete\Repositories\GenericRepository.cs" />
-    <Compile Include="Concrete\Repositories\HeadingRepository.cs" />
-    <Compile Include="Concrete\Repositories\WriterRepository.cs" />
+    <Compile Include="EntityFramework\EfAboutDal.cs" />
+    <Compile Include="EntityFramework\EfCategoryDal.cs" />
+    <Compile Include="EntityFramework\EfContactDal.cs" />
+    <Compile Include="EntityFramework\EfContentDal.cs" />
+    <Compile Include="EntityFramework\EfHeadingDal.cs" />
+    <Compile Include="EntityFramework\EfWriterDal.cs" />
     <Compile Include="Migrations\202104221134071_mig1.cs" />
     <Compile Include="Migrations\202104221134071_mig1.designer.cs">
       <DependentUpon>202104221134071_mig1.cs</DependentUpon>

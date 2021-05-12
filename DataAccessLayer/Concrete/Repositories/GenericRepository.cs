@@ -1,4 +1,5 @@
 ﻿using DataAccessLayer.Abstract;
+using EntityLayer.Abstracts;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -9,41 +10,56 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Concrete.Repositories
 {
-    public class GenericRepository<T> : IRepository<T> where T : class
+    public class GenericRepository<TEntity,TContext> : IRepository<TEntity> 
+        where TEntity : class,IEntity, new()
+        where TContext : DbContext, new()
     {
-        Context context = new Context();
-        DbSet<T> _object;
-
-        public GenericRepository()
+        public void Delete(TEntity entity)
         {
-            _object = context.Set<T>();
+            using (TContext context = new TContext())
+            {
+                var deletedEntity = context.Entry(entity);
+                deletedEntity.State = EntityState.Deleted;
+                context.SaveChanges();
+            }
         }
 
-        public void Delete(T p)
+        public TEntity Get(Expression<Func<TEntity, bool>> filter)
         {
-            _object.Remove(p);
-            context.SaveChanges();
+            using (TContext context = new TContext())
+            {
+                return context.Set<TEntity>().SingleOrDefault(filter);
+            }
         }
 
-        public void Insert(T p)
+        public void Insert(TEntity entity)
         {
-            _object.Add(p);
-            context.SaveChanges();
+            using (TContext context = new TContext())
+            {
+                var addedEntity = context.Entry(entity);
+                addedEntity.State = EntityState.Added;
+                context.SaveChanges();
+            }
         }
 
-        public List<T> List()
+        public List<TEntity> List(Expression<Func<TEntity, bool>> filter = null)
         {
-            return _object.ToList();
+            using (TContext context = new TContext())
+            {
+                return filter == null
+                    ? context.Set<TEntity>().ToList()
+                    : context.Set<TEntity>().Where(filter).ToList();
+            }
         }
 
-        public List<T> List(Expression<Func<T, bool>> filter)
+        public void Update(TEntity entity)
         {
-            return _object.Where(filter).ToList();
-        }
-
-        public void Update(T p)
-        {
-            context.SaveChanges();
+            using (TContext context = new TContext())
+            {
+                var updatedEntity = context.Entry(entity);
+                updatedEntity.State = EntityState.Modified;
+                context.SaveChanges();
+            }
         }
     }
 }

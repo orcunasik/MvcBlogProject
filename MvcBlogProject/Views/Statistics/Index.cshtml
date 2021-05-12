@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>GÜNCEL İSTATİSTİK BİLGİLERİ</h2>
+<br />
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-gradient-navy">
+                    <div class="inner">
+                        <h3>@ViewBag.TotalCategory</h3>
+                        <p>Toplam Kategori Adedi</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-gradient-teal">
+                    <div class="inner">
+                        <h3>@ViewBag.HeadingsInSoftwareCategory</h3>
+                        <p>Yazılım Kategorisindeki Başlık Sayısı</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-gradient-orange">
+                    <div class="inner">
+                        <h3>@ViewBag.NumberOfWritersContainingTheLetterA</h3>
+                        <p>A Harfi İçeren Yazar Sayısı</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-gradient-success">
+                    <div class="inner">
+                        <h3>@ViewBag.CategoryWithTheMostTitles</h3>
+                        <p>En Çok Başlığa Sahip Kategori</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-gradient-olive">
+                    <div class="inner">
+                        <h3>@ViewBag.NumericalDifferinceInCategory</h3>
+                        <p>Kategori Durumu True ile False Arasındaki Fark</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<a href="/AdminCategory/Index" class="btn btn-primary" style="margin-top:2px">Geri Dön</a>
