@@ -1,0 +1,44 @@
+﻿@model EntityLayer.Concrete.Writer
+@{
+    ViewBag.Title = "AddWriter";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<h1>Yeni Yazar Ekleme Sayfası</h1>
+<br />
+
+@using (Html.BeginForm("AddWriter", "Writer", FormMethod.Post))
+{
+<div class="form-group">
+    @Html.Label("Adı")
+    @Html.TextBoxFor(x => x.WriterName, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.WriterName, null, new { @class = "text-danger" })
+    <br />
+    @Html.Label("Soyadı")
+    @Html.TextBoxFor(x => x.WriterSurname, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.WriterSurname, null, new { @class = "text-danger" })
+    <br />
+    @Html.Label("Parola")
+    @Html.TextBoxFor(x => x.WriterPassword, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.WriterPassword, null, new { @class = "text-danger" })
+    <br />
+    @Html.Label("Eposta Adresi")
+    @Html.TextBoxFor(x => x.WriterMail, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.WriterMail, null, new { @class = "text-danger" })
+    <br />
+    @Html.Label("Prodil URL")
+    @Html.TextBoxFor(x => x.WriterImage, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.WriterImage, null, new { @class = "text-danger" })
+    <br />
+    @Html.Label("Ünvanı")
+    @Html.TextBoxFor(x => x.WriterTitle, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.WriterTitle, null, new { @class = "text-danger" })
+    <br />
+    @Html.Label("Hakkında")
+    @Html.TextBoxFor(x => x.WriterAbout, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.WriterAbout, null, new { @class="text-danger" })
+    <br />
+    <button class="btn btn-success">Kaydet</button>
+</div>
+}
+

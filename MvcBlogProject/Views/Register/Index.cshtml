@@ -1,0 +1,62 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Admin Kaydı</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="~/AdminLTE-3.0.4/signup-form-11/css/style.css">
+
+</head>
+<body>
+    <section class="ftco-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-7 col-lg-6 col-xl-5">
+                    <div class="login-wrap p-4 p-md-5">
+                        <div class="icon d-flex align-items-center justify-content-center">
+                            <span class="fa fa-edit"></span>
+                        </div>
+                        <h3 class="text-center mb-4">Hesap Olusturun</h3>
+                        @using (Html.BeginForm("Index", "Register", FormMethod.Post))
+                        {
+                            <form action="#" class="signup-form">
+                                <div class="form-group mb-3">
+                                    <label class="label" for="email">Email Adresi</label>
+                                    <input id="AdminUserName" type="text" class="form-control" name="AdminUserName" placeholder="admin@gmail.com">
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label class="label" for="password">Parola</label>
+                                    <input id="AdminPassword" type="password" name="AdminPassword" class="form-control" placeholder="********">
+                                    <span toggle="#AdminPassword" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="form-control btn btn-primary rounded submit px-3">Kaydol</button>
+                                </div>
+                            </form>
+                        }
+                        <p>Hesabınız Mı Var! <a data-toggle="tab" href="/Login/Index/"> Şimdi Oturum Açın</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="~/AdminLTE-3.0.4/signup-form-11/js/jquery.min.js"></script>
+    <script src="~/AdminLTE-3.0.4/signup-form-11/js/popper.js"></script>
+    <script src="~/AdminLTE-3.0.4/signup-form-11/js/bootstrap.min.js"></script>
+    <script src="~/AdminLTE-3.0.4/signup-form-11/js/main.js"></script>
+
+</body>
+</html>
+
+

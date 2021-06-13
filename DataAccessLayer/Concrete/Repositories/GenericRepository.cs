@@ -10,10 +10,20 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Concrete.Repositories
 {
-    public class GenericRepository<TEntity,TContext> : IRepository<TEntity> 
-        where TEntity : class,IEntity, new()
+    public class GenericRepository<TEntity, TContext> : IRepository<TEntity>
+        where TEntity : class, IEntity, new()
         where TContext : DbContext, new()
     {
+        //public int Count(Expression<Func<TEntity, bool>> filter = null)
+        //{
+        //    using (TContext context = new TContext())
+        //    {
+        //        return filter == null
+        //            ? context.Set<TEntity>().Count()
+        //            : context.Set<TEntity>().Where(filter).Count();
+        //    }
+        //}
+
         public void Delete(TEntity entity)
         {
             using (TContext context = new TContext())
@@ -44,12 +54,10 @@ namespace DataAccessLayer.Concrete.Repositories
 
         public List<TEntity> List(Expression<Func<TEntity, bool>> filter = null)
         {
-            using (TContext context = new TContext())
-            {
-                return filter == null
-                    ? context.Set<TEntity>().ToList()
-                    : context.Set<TEntity>().Where(filter).ToList();
-            }
+            TContext context = new TContext();
+            return filter == null
+                ? context.Set<TEntity>().ToList()
+                : context.Set<TEntity>().Where(filter).ToList();
         }
 
         public void Update(TEntity entity)

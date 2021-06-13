@@ -1,0 +1,49 @@
+﻿@using EntityLayer.Concrete
+@model List<About>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@{ string btnColor = "";}
+
+<h2>Hakkımda Veri Listesi</h2>
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>Hakkımda Başlığı</th>
+        <th>İşlemler</th>
+    </tr>
+    @foreach (var aboutItem in Model)
+    {
+        <tr>
+            <td>@aboutItem.AboutId</td>
+            <td>Başlık</td>
+            <td>
+                @if (aboutItem.AboutStatus == true)
+                {
+                    aboutItem.AboutStatus = false;
+                    btnColor = "btn btn-danger";
+                    <a class="@btnColor" href="/About/AboutStatus/@aboutItem.AboutId">
+                        <i class="fas flag-icon-tz">
+                        </i>
+                        <span>Pasifleştir</span>
+                    </a>
+
+                }
+                else
+                {
+                    aboutItem.AboutStatus = true;
+                    btnColor = "btn btn-success";
+                    <a class="@btnColor" href="/About/AboutStatus/@aboutItem.AboutId">
+                        <i class="fas flag-icon-tz">
+                        </i>
+                        <span>Aktifleştir</span>
+                    </a>
+                }
+            </td>
+        </tr>
+    }
+</table>
+
+@Html.Action("AboutPartial","About")
