@@ -14,22 +14,15 @@
             <ul class="nav nav-pills flex-column">
                 <li class="nav-item active">
                     <a href="/Contact/Index/" class="nav-link">
-                        <i class="fas fa-mail-bulk"></i> İletişim
-                        <span class="badge bg-danger float-right">@ViewBag.ContactMessages</span>
-                    </a>
-                </li>
-                <li class="nav-item active">
-                    <a href="/Message/Inbox/" class="nav-link">
-                        <i class="fas fa-inbox"></i>
-                        @if (ViewBag.ReceivedMessages == 0)
+                        <i class="fas fa-mail-bulk"></i>
+                        @if (ViewBag.ContactMessages == 0)
                         {
-                            <span>Gelen Kutusu</span>
-                            <span></span>
+                            <span>İletişim</span>
                         }
                         else
                         {
-                            <b><span>Gelen Kutusu</span></b>
-                            <span class="badge bg-primary float-right">@ViewBag.ReceivedMessages</span>
+                            <b><span class="text text-primary">İletişim</span></b>
+                            <span class="badge bg-danger float-right">@ViewBag.ContactMessages</span>
                         }
                     </a>
                 </li>
@@ -39,22 +32,61 @@
                         <span class="badge badge-warning float-right">@ViewBag.SentMessages</span>
                     </a>
                 </li>
+                <li class="nav-item active">
+                    <a href="/Message/Inbox/" class="nav-link">
+                        <i class="fas fa-inbox"></i>
+                        @if (ViewBag.ReceivedMessages == 0)
+                        {
+                            <span>Gelen Kutusu</span>
+                        }
+                        else
+                        {
+                            <b><span class="text text-danger">Gelen Kutusu</span></b>
+                            <span class="badge bg-primary float-right">@ViewBag.ReceivedMessages</span>
+                        }
+                    </a>
+                </li>
                 <li class="nav-item">
                     <a href="/Message/UnReadMessage/" class="nav-link">
-                        <i class="far fa-envelope"></i> Okunmamış Mesajlar
-                        <span class="badge badge-info float-right">@ViewBag.UnReadMessages</span>
+                        <i class="far fa-envelope"></i>
+                        @if (ViewBag.UnReadMessages == 0)
+                        {
+                            <span>Okunmamış Mesajlar</span>
+                        }
+                        else
+                        {
+                            <b><span class="text text-dark">Okunmamış Mesajlar</span></b>
+                            <span class="badge badge-info float-right">@ViewBag.UnReadMessages</span>
+                        }
+
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="/Message/ReadMessage/" class="nav-link">
-                        <i class="far fa-envelope"></i> Okunan Mesajlar
-                        <span class="badge badge-success float-right">@ViewBag.ReadMessages</span>
+                        <i class="far fa-envelope"></i>
+                        @if (ViewBag.ReadMessages == 0)
+                        {
+                            <span>Okunan Mesajlar</span>
+                        }
+                        else
+                        {
+                            <span>Okunan Mesajlar</span>
+                            <span class="badge badge-success float-right">@ViewBag.ReadMessages</span>
+                        }
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="/Message/Draft/" class="nav-link">
-                        <i class="far fa-file-alt"></i> Taslaklar
-                        <span class="badge badge-dark float-right">@ViewBag.Drafts</span>
+                        <i class="far fa-file-alt"></i>
+                        @if (ViewBag.Draft == 0)
+                        {
+                            <span>Taslaklar</span>
+                        }
+                        else
+                        {
+                            <b><span class="text text-purple">Taslaklar</span></b>
+                            <span class="badge badge-dark float-right">@ViewBag.Drafts</span>
+                        }
                     </a>
                 </li>
                 <li class="nav-item">

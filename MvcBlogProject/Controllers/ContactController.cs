@@ -27,18 +27,22 @@ namespace MvcBlogProject.Controllers
 
         public ActionResult GetContactDetails(int id)
         {
-            var contactValues = contactManager.GetById(id);
-
-            return View(contactValues);
+            var contactValue = contactManager.GetById(id);
+            if (contactValue.IsRead == false)
+            {
+                contactValue.IsRead = true;
+            }
+            contactManager.ContactUpdate(contactValue);
+            return View(contactValue);
         }
 
         public PartialViewResult ContactPartial()
         {
-            ViewBag.ContactMessages = contactManager.GetList().Count();
+            ViewBag.ContactMessages = context.Contacts.Count(x=>x.IsRead == false);
             ViewBag.ReceivedMessages = context.Messages.Count(x=>x.ReceiverMail == "admin@gmail.com" && x.IsRead == false);
             ViewBag.SentMessages = context.Messages.Count(x => x.SenderMail == "admin@gmail.com" && x.IsDraft == false);
-            ViewBag.ReadMessages = context.Messages.Count(x=>x.IsRead == true && x.SenderMail != "admin@gmail.com");
-            ViewBag.UnReadMessages = context.Messages.Count(x => x.IsRead == false && x.SenderMail != "admin@gmail.com");
+            ViewBag.ReadMessages = context.Messages.Count(x=>x.IsRead == true && x.ReceiverMail == "admin@gmail.com");
+            ViewBag.UnReadMessages = context.Messages.Count(x => x.IsRead == false && x.ReceiverMail == "admin@gmail.com");
             ViewBag.Drafts = context.Messages.Count(x=>x.IsDraft == true);
 
             return PartialView();

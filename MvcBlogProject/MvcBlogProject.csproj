@@ -2041,6 +2041,13 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="ScreenShots\gelen_mesaj1.png" />
+    <Content Include="ScreenShots\gelen_mesaj2.png" />
+    <Content Include="ScreenShots\hakkimizda.png" />
+    <Content Include="ScreenShots\taslak1.png" />
+    <Content Include="ScreenShots\taslak2.png" />
+    <Content Include="ScreenShots\yetenek_profili1.png" />
+    <Content Include="ScreenShots\yetenek_profili2.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="AdminLTE-3.0.4\.babelrc" />

@@ -131,6 +131,10 @@
     <Compile Include="Migrations\202106131435462_migration_add_about_aboutstatus.designer.cs">
       <DependentUpon>202106131435462_migration_add_about_aboutstatus.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202106131655428_migration_add_contact_isread.cs" />
+    <Compile Include="Migrations\202106131655428_migration_add_contact_isread.designer.cs">
+      <DependentUpon>202106131655428_migration_add_contact_isread.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -186,6 +190,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202106131435462_migration_add_about_aboutstatus.resx">
       <DependentUpon>202106131435462_migration_add_about_aboutstatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106131655428_migration_add_contact_isread.resx">
+      <DependentUpon>202106131655428_migration_add_contact_isread.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
