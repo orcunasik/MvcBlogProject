@@ -1,5 +1,9 @@
-﻿using DataAccessLayer.Concrete;
+﻿using BusinessLayer.Abstract;
+using BusinessLayer.Concrete;
+using DataAccessLayer.Concrete;
+using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
+using EntityLayer.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,37 +18,67 @@ namespace MvcBlogProject.Controllers
     [AllowAnonymous]
     public class LoginController : Controller
     {
-        // GET: Login
+        IAuthService authService = new AuthManager(new AdminManager(new EfAdminDal()), new WriterManager(new EfWriterDal()));
+
+        Context context = new Context();
+
         [HttpGet]
-        public ActionResult Index()
+        public ActionResult AdminLogin()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult Index(Admin admin)
+        public ActionResult AdminLogin(AdminLoginDto adminLoginDto)
         {
-            SHA1 sha1 = new SHA1CryptoServiceProvider();
-            string password = admin.AdminPassword;
-            string userName = admin.AdminUserName;
-            string passwordHash = Convert.ToBase64String(sha1.ComputeHash(Encoding.UTF8.GetBytes(password)));
-            string userNameHash = Convert.ToBase64String(sha1.ComputeHash(Encoding.UTF8.GetBytes(userName)));
-            admin.AdminPassword = passwordHash;
-            admin.AdminUserName = userNameHash;
-
-            Context context = new Context();
-            var adminUserInfo = context.Admins.FirstOrDefault
-                (x=>x.AdminUserName == userNameHash && x.AdminPassword == passwordHash);
-
-            if (adminUserInfo != null)
+            if (authService.AdminLogin(adminLoginDto))
             {
-                FormsAuthentication.SetAuthCookie(adminUserInfo.AdminUserName,false);
-                Session["AdminUserName"] = adminUserInfo.AdminUserName;
-                return RedirectToAction("Index","Heading");
+                FormsAuthentication.SetAuthCookie(adminLoginDto.AdminMail, false);
+                Session["AdminMail"] = adminLoginDto.AdminMail;
+                return RedirectToAction("Index", "Chart");
+            }
+            else
+            {
+                ViewData["ErrorMessage"] = "Kullanıcı Adı veya parola yanlış";
+                return View();
+            }
+        }
+
+        public ActionResult AdminLogOut()
+        {
+            FormsAuthentication.SignOut();
+            Session.Abandon();
+            return RedirectToAction("AdminLogin", "Login");
+        }
+
+        [HttpGet]
+        public ActionResult WriterLogin()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult WriterLogin(WriterLoginDto writerLoginDto)
+        {
+            if (authService.WriterLogin(writerLoginDto))
+            {
+                FormsAuthentication.SetAuthCookie(writerLoginDto.WriterMail, false);
+                Session["WriterMail"] = writerLoginDto.WriterMail;
+                return RedirectToAction("MyHeading", "WriterHeading");
             }
 
-            ViewBag.ErrorMessage = "Kullanıcı Adı veya Parolanız Hatalı";
-            return View();
+            else
+            {
+                ViewData["ErrorMessage"] = "Kullanıcı Adı veya Parola Yanlış";
+                return RedirectToAction("WriterLogin", "Login");
+            }
+        }
+
+        public ActionResult WriterLogOut()
+        {
+            FormsAuthentication.SignOut();
+            Session.Abandon();
+            return RedirectToAction("Headings", "Default");
         }
     }
 }

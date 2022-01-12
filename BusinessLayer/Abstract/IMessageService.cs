@@ -10,15 +10,15 @@ namespace BusinessLayer.Abstract
 {
     public interface IMessageService
     {
-        List<Message> GetListInbox();
-        List<Message> GetListSendInbox();
+        List<Message> GetListInbox(string email);
+        List<Message> GetListSendInbox(string email);
         List<Message> GetListUnRead();
+        List<Message> GetListRead();
         List<Message> GetList();
         List<Message> IsDraft();
         void MessageAdd(Message message);
         void MessageDelete(Message message);
         void MessageUpdate(Message message);
-        void SaveDraft(Message message);
         Message GetById(int id);
         //int Count(Expression<Func<Message, bool>> filter = null);
     }

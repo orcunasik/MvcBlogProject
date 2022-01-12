@@ -10,7 +10,10 @@ namespace BusinessLayer.Abstract
     public interface IContentService
     {
         List<Content> GetList();
+        List<Content> GetList(string word);
         List<Content> GetListByHeadingId(int id);
+        List<Content> GetListByWriter(int id);
+        List<Content> GetContentByWriterHeading(int id);
         void ContentAdd(Content content);
         void ContentUpdate(Content content);
         void ContentDelete(Content content);

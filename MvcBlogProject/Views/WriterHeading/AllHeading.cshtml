@@ -1,0 +1,136 @@
+﻿@using EntityLayer.Concrete
+@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<Heading>
+
+@{
+    ViewBag.Title = "AllHeading";
+    Layout = "~/Views/Shared/_WriterLayout.cshtml";
+}
+
+@{ string color = "";
+    string btnColor = "";
+}
+
+
+
+<!DOCTYPE html>
+<html>
+
+<body class="hold-transition sidebar-mini">
+    <!-- Main content -->
+    <section class="content">
+
+        <!-- Default box -->
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Başlık İşlemleri</h3>
+
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="card-body p-0">
+                <table class="table table-striped projects">
+                    <thead>
+                        <tr>
+                            <th style="width: 1%">
+                                #
+                            </th>
+                            <th style="width: 20%">
+                                Başlık Adı
+                            </th>
+                            <th style="width: 15%">
+                                Oluşturan Yazar
+                            </th>
+                            <th style="width: 8%" class="text-center">
+                                Kategori
+                            </th>
+                            <th style="width: 20%">
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var headingItem in Model)
+                        {
+                            if (headingItem.Category.CategoryName == "Tiyatro")
+                            {
+                                color = "badge badge-warning";
+                            }
+                            if (headingItem.Category.CategoryName == "Kitap")
+                            {
+                                color = "badge badge-success";
+                            }
+                            if (headingItem.Category.CategoryName == "Eğitim")
+                            {
+                                color = "badge badge-info";
+                            }
+                            if (headingItem.Category.CategoryName == "Dizi")
+                            {
+                                color = "badge badge-secondary";
+                            }
+                            if (headingItem.Category.CategoryName == "Film")
+                            {
+                                color = "badge badge-danger";
+                            }
+                            if (headingItem.Category.CategoryName == "Spor")
+                            {
+                                color = "badge badge-dark";
+                            }
+
+
+                            <tr>
+                                <td>
+                                    @headingItem.HeadingId
+                                </td>
+                                <td>
+                                    <a>
+                                        @headingItem.HeadingName
+                                    </a>
+                                    <br />
+                                    <small>
+                                        @headingItem.HeadingDate.ToLongDateString()
+                                    </small>
+                                </td>
+                                <td>
+                                    <ul class="list-inline">
+                                        <li class="list-inline-item">
+                                            <img alt="Avatar" class="table-avatar" src="@headingItem.Writer.WriterImage">
+                                        </li>
+                                    </ul>
+                                </td>
+                                <td class="project-state">
+                                    <span class="@color">@headingItem.Category.CategoryName</span>
+                                </td>
+                                <td class="project-actions text-right">
+                                    <a class="btn btn-primary btn-sm" href="/Default/Headings/@headingItem.HeadingId">
+                                        <i class="fas fa-folder">
+                                        </i>
+                                        Yazılar
+                                    </a>
+                                    <a class="btn btn-info btn-sm" href="/WriterContent/AddContent/@headingItem.HeadingId">
+                                        <i class="fas fa-pencil-alt">
+                                        </i>
+                                        Başlığa Yaz
+                                    </a>
+
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+
+    </section>
+</body>
+</html>
+<a href="/WriterHeading/NewHeading/" class="btn btn-primary">Yeni Başlık</a>
+@Html.PagedListPager((IPagedList)Model,page=>Url.Action("AllHeading",new { page}),
+    new PagedListRenderOptions { LiElementClasses = new List<string> { "page-link" } })
+

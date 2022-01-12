@@ -1,14 +1,18 @@
-﻿using DataAccessLayer.Concrete;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Text;
 using System.Web.Security;
+using System.Security.Cryptography;
+using BusinessLayer.Concrete;
+using DataAccessLayer.EntityFramework;
 
 namespace MvcBlogProject.Roles
 {
     public class AdminRoleProvider : RoleProvider
     {
+        AdminManager adminManager = new AdminManager(new EfAdminDal());
         public override string ApplicationName { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public override void AddUsersToRoles(string[] usernames, string[] roleNames)
@@ -36,11 +40,28 @@ namespace MvcBlogProject.Roles
             throw new NotImplementedException();
         }
 
-        public override string[] GetRolesForUser(string username)
+        public override string[] GetRolesForUser(string adminMail)
         {
-            Context context = new Context();
-            var x = context.Admins.FirstOrDefault(k=>k.AdminUserName == username);
-            return new string[] { x.AdminRole };
+            using (var crypto = new HMACSHA512())
+            {
+                var adminMailCrypto = crypto.ComputeHash(Encoding.UTF8.GetBytes(adminMail));
+                var admin = adminManager.GetList();
+                foreach (var adminItem in admin)
+                {
+                    for (int i = 0; i < adminMailCrypto.Length; i++)
+                    {
+                        if (adminMailCrypto[i] == adminItem.AdminMail[i])
+                        {
+                            return new string[] { adminItem.AdminRole };
+                        }
+                    }
+                }
+                return new string[] { };
+            }
+
+            //Context context = new Context();
+            //var user = context.Admins.FirstOrDefault(k=>k.AdminUserName == username);
+            //return new string[] { user.AdminRole };
         }
 
         public override string[] GetUsersInRole(string roleName)

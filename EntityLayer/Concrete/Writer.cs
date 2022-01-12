@@ -12,6 +12,10 @@ namespace EntityLayer.Concrete
     {
         [Key]
         public int WriterId { get; set; }
+
+        [StringLength(25)]
+        public string WriterUserName { get; set; }
+
         [StringLength(50)]
         public string WriterName { get; set; }
         [StringLength(50)]
@@ -20,10 +24,10 @@ namespace EntityLayer.Concrete
         public string WriterImage { get; set; }
         [StringLength(100)]
         public string WriterAbout { get; set; }
-        [StringLength(200)]
         public string WriterMail { get; set; }
-        [StringLength(200)]
-        public string WriterPassword { get; set; }
+        public byte[] WriterPasswordHash { get; set; }
+        public byte[] WriterPasswordSalt { get; set; }
+
         [StringLength(50)]
         public string WriterTitle { get; set; }
 

@@ -1,0 +1,127 @@
+﻿
+<div class="col-md-3">
+    <a href="/WriterMessage/NewMessage/" class="btn btn-primary btn-block mb-3">Mesaj Yaz</a>
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Seçenekler</h3>
+            <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                </button>
+            </div>
+        </div>
+        <div class="card-body p-0">
+            <ul class="nav nav-pills flex-column">
+                <li class="nav-item">
+                    <a href="/WriterMessage/SendBox/" class="nav-link">
+                        <i class="far fa-envelope"></i> Giden Kutusu
+                        <span class="badge badge-warning float-right">@ViewBag.SentMessages</span>
+                    </a>
+                </li>
+                <li class="nav-item active">
+                    <a href="/WriterMessage/Inbox/" class="nav-link">
+                        <i class="fas fa-inbox"></i>
+                        @if (ViewBag.ReceivedMessages == 0)
+                        {
+                            <span>Gelen Kutusu</span>
+                        }
+                        else
+                        {
+                            <b><span class="text text-danger">Gelen Kutusu</span></b>
+                            <span class="badge bg-primary float-right">@ViewBag.ReceivedMessages</span>
+                        }
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/WriterMessage/UnReadMessage/" class="nav-link">
+                        <i class="far fa-envelope"></i>
+                        @if (ViewBag.UnReadMessages == 0)
+                        {
+                            <span>Okunmamış Mesajlar</span>
+                        }
+                        else
+                        {
+                            <b><span class="text text-dark">Okunmamış Mesajlar</span></b>
+                            <span class="badge badge-info float-right">@ViewBag.UnReadMessages</span>
+                        }
+
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/WriterMessage/ReadMessage/" class="nav-link">
+                        <i class="far fa-envelope"></i>
+                        @if (ViewBag.ReadMessages == 0)
+                        {
+                            <span>Okunan Mesajlar</span>
+                        }
+                        else
+                        {
+                            <span>Okunan Mesajlar</span>
+                            <span class="badge badge-success float-right">@ViewBag.ReadMessages</span>
+                        }
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/WriterMessage/Draft/" class="nav-link">
+                        <i class="far fa-file-alt"></i>
+                        @if (ViewBag.Drafts == 0)
+                        {
+                            <span>Taslaklar</span>
+                        }
+                        else
+                        {
+                            <b><span class="text text-purple">Taslaklar</span></b>
+                            <span class="badge badge-dark float-right">@ViewBag.Drafts</span>
+                        }
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-filter"></i> Spam
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="far fa-trash-alt"></i> Çöp Kutusu
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Diğer</h3>
+            <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                </button>
+            </div>
+        </div>
+        <div class="card-body p-0">
+            <ul class="nav nav-pills flex-column">
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="far fa-circle text-danger"></i>
+                        Önemliler
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="far fa-circle text-warning"></i> Tanıtımlar
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="far fa-circle text-primary"></i>
+                        Sosyal Medya
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+</div>
+
