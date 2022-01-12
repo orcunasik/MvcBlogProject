@@ -13,6 +13,7 @@
 <div class="form-group">
     @Html.Label("Başlık ID")
     @Html.TextBoxFor(x => x.HeadingId, new { @class = "form-control" })
+    @Html.HiddenFor(x=>x.HeadingStatus)
     <br />
     @Html.Label("Başlık Adı")
     @Html.TextBoxFor(x => x.HeadingName, new { @class = "form-control" })

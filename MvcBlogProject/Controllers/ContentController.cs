@@ -17,6 +17,18 @@ namespace MvcBlogProject.Controllers
         {
             return View();
         }
+
+        public ActionResult GetAllContent(string findWord)
+        {
+
+            var contentList = contentManager.GetList();
+            if (!string.IsNullOrEmpty(findWord))
+            {
+                contentList = contentManager.GetList(findWord);
+            }
+            return View(contentList.ToList());
+        }
+
         public ActionResult ContentByHeading(int id)
         {
             var contentValues = contentManager.GetListByHeadingId(id);

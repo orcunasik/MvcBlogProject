@@ -135,6 +135,26 @@
     <Compile Include="Migrations\202106131655428_migration_add_contact_isread.designer.cs">
       <DependentUpon>202106131655428_migration_add_contact_isread.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202106231015112_migration_admin_password_hashing.cs" />
+    <Compile Include="Migrations\202106231015112_migration_admin_password_hashing.designer.cs">
+      <DependentUpon>202106231015112_migration_admin_password_hashing.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106231457299_migration_update_writer.cs" />
+    <Compile Include="Migrations\202106231457299_migration_update_writer.designer.cs">
+      <DependentUpon>202106231457299_migration_update_writer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106231458598_migration_add_writer_hashing.cs" />
+    <Compile Include="Migrations\202106231458598_migration_add_writer_hashing.designer.cs">
+      <DependentUpon>202106231458598_migration_add_writer_hashing.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106231512069_migration_add_writer_username.cs" />
+    <Compile Include="Migrations\202106231512069_migration_add_writer_username.designer.cs">
+      <DependentUpon>202106231512069_migration_add_writer_username.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106291130491_migration_writer_changed_writermail.cs" />
+    <Compile Include="Migrations\202106291130491_migration_writer_changed_writermail.designer.cs">
+      <DependentUpon>202106291130491_migration_writer_changed_writermail.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -193,6 +213,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202106131655428_migration_add_contact_isread.resx">
       <DependentUpon>202106131655428_migration_add_contact_isread.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106231015112_migration_admin_password_hashing.resx">
+      <DependentUpon>202106231015112_migration_admin_password_hashing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106231457299_migration_update_writer.resx">
+      <DependentUpon>202106231457299_migration_update_writer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106231458598_migration_add_writer_hashing.resx">
+      <DependentUpon>202106231458598_migration_add_writer_hashing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106231512069_migration_add_writer_username.resx">
+      <DependentUpon>202106231512069_migration_add_writer_username.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106291130491_migration_writer_changed_writermail.resx">
+      <DependentUpon>202106291130491_migration_writer_changed_writermail.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

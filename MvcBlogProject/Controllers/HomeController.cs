@@ -26,5 +26,11 @@ namespace MvcBlogProject.Controllers
 
             return View();
         }
+        [AllowAnonymous]
+        public ActionResult HomePage()
+        {
+
+            return View();
+        }
     }
 }

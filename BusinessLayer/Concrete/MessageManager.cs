@@ -34,24 +34,29 @@ namespace BusinessLayer.Concrete
             return _messageDal.List();
         }
 
-        public List<Message> GetListInbox()
+        public List<Message> GetListInbox(string email)
         {
-            return _messageDal.List(x=>x.ReceiverMail == "admin@gmail.com");
+            return _messageDal.List(x=>x.ReceiverMail == email);
         }
 
-        public List<Message> GetListSendInbox()
+        public List<Message> GetListRead()
         {
-            return _messageDal.List(x => x.SenderMail == "admin@gmail.com");
+            return _messageDal.List().Where(x => x.IsRead == true).ToList();
+        }
+
+        public List<Message> GetListSendInbox(string email)
+        {
+            return _messageDal.List(x => x.SenderMail == email);
         }
 
         public List<Message> GetListUnRead()
         {
-            return _messageDal.List(x=>x.ReceiverMail == "admin@gmail.com").Where(x=>x.IsRead == false).ToList();
+            return _messageDal.List(x=>x.ReceiverMail == "aliyildiz@gmail.com").Where(x=>x.IsRead == false).ToList();
         }
 
         public List<Message> IsDraft()
         {
-            return _messageDal.List(x=>x.IsDraft == true);
+            return _messageDal.List(x => x.IsDraft == true && x.SenderMail == "aliyildiz@gmail.com").ToList();
         }
 
         public void MessageAdd(Message message)
@@ -69,9 +74,5 @@ namespace BusinessLayer.Concrete
             _messageDal.Update(message);
         }
 
-        public void SaveDraft(Message message)
-        {
-            _messageDal.Insert(message);
-        }
     }
 }

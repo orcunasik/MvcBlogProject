@@ -1,0 +1,29 @@
+﻿@model EntityLayer.Dtos.AdminLoginDto
+
+@{
+    ViewBag.Title = "AddAdmin";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h3>Yeni Admin Tanımı</h3>
+<br />
+
+@using (Html.BeginForm("AddAdmin", "Authorization", FormMethod.Post))
+{
+<div class="form-group">
+    @Html.Label("Admin Kullanıcı Adı")
+    @Html.TextBoxFor(x => x.AdminUserName, new { @class = "form-control" })
+    <br /><br />
+    @Html.Label("Admin Eposta")
+    @Html.TextBoxFor(x => x.AdminMail, new { @class = "form-control" })
+    <br /><br />
+    @Html.Label("Parola Giriniz")
+    @Html.TextBoxFor(x => x.AdminPassword, new { @class = "form-control" })
+    <br /><br />
+    @Html.Label("Rolü")
+    @Html.TextBoxFor(x => x.AdminRole, new { @class = "form-control" })
+    <br /><br />
+    <button class="btn btn-success">Kaydet</button>
+</div>
+}
+

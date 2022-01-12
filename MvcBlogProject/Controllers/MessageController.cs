@@ -1,6 +1,7 @@
 ﻿using BusinessLayer.Abstract;
 using BusinessLayer.Concrete;
 using BusinessLayer.Validation.FluentValidation;
+using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using FluentValidation.Results;
@@ -18,17 +19,22 @@ namespace MvcBlogProject.Controllers
 
         MessageManager messageManager = new MessageManager(new EfMessageDal());
         MessageValidator messageValidator = new MessageValidator();
+        Context context = new Context();
 
         [Authorize]
         public ActionResult Inbox()
         {
-            var messageList = messageManager.GetListInbox();
+            string email = (string)Session["AdminMail"];
+            var writerId = context.Admins.Where(x => x.AdminMail.ToString() == email)
+                .Select(y => y.AdminId)
+                .FirstOrDefault();
+            var messageList = messageManager.GetListInbox(email);
             return View(messageList);
         }
 
-        public ActionResult SendBox()
+        public ActionResult SendBox(string email)
         {
-            var messageListSend = messageManager.GetListSendInbox();
+            var messageListSend = messageManager.GetListSendInbox(email);
             return View(messageListSend);
         }
 
@@ -153,7 +159,7 @@ namespace MvcBlogProject.Controllers
 
         public ActionResult ReadMessage()
         {
-            var readMessage = messageManager.GetList().Where(x=>x.IsRead == true).ToList();
+            var readMessage = messageManager.GetListRead();
             return View(readMessage);
         }
 
